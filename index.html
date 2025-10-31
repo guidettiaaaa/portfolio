@@ -1,0 +1,90 @@
+
+   <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio – Guidetti Andrea</title>
+  <meta name="description" content="Mini-portfolio personnel." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav">
+      <a class="logo" href="#">TN</a>
+      <ul class="menu">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="themeToggle" aria-label="Basculer le thème">🌓</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <img src="images/portrait.jpg" alt="Photo de Guidetti Andrea" class="hero-img">
+
+        <h1>Bonjour je me présente je m'appelle et je suis monteur pc et en apprentissage a l'orif en tant qu'opérateur en <span>Guidetti Andrea</span>.</h1>
+      <p>je suis monteur pc et en apprentissage a l'orif de pomy en tant qu'opérateur en informatique et habitant à Sion  .</p>
+      <a class="cta" href="#projects">Voir mes projets</a>
+    </section>
+
+    <section id="about" class="about container">
+      <h2>À propos</h2>
+      <p></p>
+    </section>
+
+    <section id="projects" class="projects container">
+      <h2>Projets</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Projet A</h3>
+          <p>Détection temps réel, latence < 20ms.</p>
+          <a href="#" target="_blank" rel="noopener">Détails</a>
+        </article>
+        <article class="card">
+          <h3>Projet B</h3>
+          <p>Pipeline MLOps, déploiement blue/green.</p>
+          <a href="#" target="_blank" rel="noopener">Détails</a>
+        </article>
+        <article class="card">
+          <h3>Projet C</h3>
+          <p>Agent autonome, mémoire textuelle exécutive.</p>
+          <a href="#" target="_blank" rel="noopener">Détails</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact container">
+      <h2>Contact</h2>
+      <form id="contactForm" action="#" method="post" novalidate>
+        <label>
+          Nom
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit">Envoyer</button>
+        <p id="formMsg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Guidetti Andrea  — Tous droits réservés.</small>
+    </div>
+  </footer>
+
+  <script src="scripts/app.js" defer></script>
+</body>
+</html>
