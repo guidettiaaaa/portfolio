@@ -1,90 +1,329 @@
-
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio – Guidetti Andrea</title>
-  <meta name="description" content="Mini-portfolio personnel." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guidetti Andrea - Monteur PC Valais & Vaud</title>
+    <meta name="description" content="Spécialiste du montage PC sur mesure dans le Valais et le canton de Vaud. Assemblage, optimisation et conseils personnalisés." />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .site-header {
+            background-color: #1a1a1a; /* Fond plus sombre pour un look moderne */
+            color: #ffffff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            max-width: 1200px; /* Largeur maximale pour le contenu */
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #00bcd4; /* Couleur accentuée pour le logo */
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        .menu li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .menu li a:hover {
+            color: #00bcd4; /* Changement de couleur au survol */
+        }
+        #themeToggle {
+            background-color: #00bcd4;
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        #themeToggle:hover {
+            background-color: #00a0ad;
+        }
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 30px;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh; /* Hauteur minimale pour que la bannière soit imposante */
+            background-image: url('Station de jeu immersive et lumineuse.jpg');
+            background-size: cover; /* Couvre tout l'espace */
+            background-position: center; /* Centre l'image */
+            color: #ffffff; /* Texte blanc pour contraster avec l'image de fond */
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Superposition sombre pour améliorer la lisibilité du texte */
+            z-index: 1;
+            border-radius: 10px;
+        }
+        .hero h1, .hero p, .hero .cta {
+            position: relative;
+            z-index: 2; /* Assure que le texte est au-dessus de la superposition */
+        }
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+        .cta {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #00bcd4;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .cta:hover {
+            background-color: #00a0ad;
+            transform: translateY(-2px);
+        }
+        .about, .projects, .contact {
+            padding: 60px 30px;
+            background-color: #ffffff;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            font-weight: 800;
+            color: #00bcd4;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        .card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #00bcd4;
+        }
+        .card p {
+            font-size: 1.05em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .card a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact label {
+            display: flex;
+            flex-direction: column;
+            font-weight: 600;
+        }
+        .contact input, .contact textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        .contact button {
+            background-color: #00bcd4;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact button:hover {
+            background-color: #00a0ad;
+        }
+        .site-footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin-top: 40px;
+        }
+        .site-footer small {
+            font-size: 0.9em;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .menu {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .hero {
+                padding: 60px 20px;
+                min-height: 40vh;
+            }
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="container nav">
-      <a class="logo" href="#">TN</a>
-      <ul class="menu">
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#projects">Projets</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button id="themeToggle" aria-label="Basculer le thème">🌓</button>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero container">
-      <img src="images/portrait.jpg" alt="Photo de Guidetti Andrea" class="hero-img">
-
-        <h1>Bonjour je me présente je m'appelle et je suis monteur pc et en apprentissage a l'orif en tant qu'opérateur en <span>Guidetti Andrea</span>.</h1>
-      <p>je suis monteur pc et en apprentissage a l'orif de pomy en tant qu'opérateur en informatique et habitant à Sion  .</p>
-      <a class="cta" href="#projects">Voir mes projets</a>
-    </section>
-
-    <section id="about" class="about container">
-      <h2>À propos</h2>
-      <p></p>
-    </section>
-
-    <section id="projects" class="projects container">
-      <h2>Projets</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Projet A</h3>
-          <p>Détection temps réel, latence < 20ms.</p>
-          <a href="#" target="_blank" rel="noopener">Détails</a>
-        </article>
-        <article class="card">
-          <h3>Projet B</h3>
-          <p>Pipeline MLOps, déploiement blue/green.</p>
-          <a href="#" target="_blank" rel="noopener">Détails</a>
-        </article>
-        <article class="card">
-          <h3>Projet C</h3>
-          <p>Agent autonome, mémoire textuelle exécutive.</p>
-          <a href="#" target="_blank" rel="noopener">Détails</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" class="contact container">
-      <h2>Contact</h2>
-      <form id="contactForm" action="#" method="post" novalidate>
-        <label>
-          Nom*
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Email*
-          <input type="email" name="email" required />
-        </label>
-        <label>
-          Message
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <button type="submit">Envoyer</button>
-        <p id="formMsg" role="status" aria-live="polite"></p>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <small>© <span id="year"></span> Guidetti Andrea  — Tous droits réservés.</small>
-    </div>
-  </footer>
-
-  <script src="scripts/app.js" defer></script>
+    <header class="site-header">
+        <nav class="nav">
+            <a class="logo" href="#">TN</a>
+            <ul class="menu">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="themeToggle" aria-label="Basculer le thème">dark mode</button>
+        </nav>
+    </header>
+    <main>
+        <section class="hero container">
+            <h1>Bonjour, je me présente, je m'appelle Guidetti Andrea et je suis monteur PC.</h1>
+            <p>Je suis en apprentissage à l'Orif de Pomy en tant qu'opérateur en informatique et habitant à Sion. Je suis passionné par le montage de PC et l'informatique. Mon objectif est de fournir des services de qualité pour assembler des ordinateurs adaptés aux besoins de mes clients.</p>
+            <a class="cta" href="#projects">Découvrir mes créations</a>
+           
+            <img src="portotototo.jpg" 
+            alt="portotototo" 
+            class="hero-image">
+        
+         </section>
+        <section id="about" class="about container">
+            <h2>Qui suis-je ?</h2>
+            <p>En tant que futur opérateur en informatique, je mets ma passion pour le matériel informatique et mon savoir-faire en montage PC au service de mes clients. Que vous ayez besoin d'une machine pour le gaming, le travail ou la création, je conçois des configurations sur mesure pour répondre parfaitement à vos attentes.</p>
+        </section>
+        <section id="projects" class="projects container">
+            <h2>Mes Réalisations</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>PC Gaming Ultime</h3>
+                    <p>Assemblage d'une bête de compétition pour des performances maximales en jeu.</p>
+                    <a href="#" target="_blank" rel="noopener">Voir la configuration</a>
+                </article>
+                <article class="card">
+                    <h3>Station de Travail Créative</h3>
+                    <p>Configuration optimisée pour le montage vidéo et la modélisation 3D.</p>
+                    <a href="#" target="_blank" rel="noopener">Voir la configuration</a>
+                </article>
+                <article class="card">
+                    <h3>PC Silencieux et Performant</h3>
+                    <p>Un équilibre parfait entre puissance et discrétion pour votre bureau.</p>
+                    <a href="#" target="_blank" rel="noopener">Voir la configuration</a>
+                </article>
+            </div>
+        </section>
+        <section id="contact" class="contact container">
+            <h2>Contactez-moi</h2>
+            <form id="contactForm" action="#" method="post" novalidate>
+                <label>
+                    Nom*
+                    <input type="text" name="name" required />
+                </label>
+                <label>
+                    Email*
+                    <input type="email" name="email" required />
+                </label>
+                <label>
+                    Message
+                    <textarea name="message" rows="5" required></textarea>
+                </label>
+                <button type="submit">Envoyer ma demande</button>
+                <p id="formMsg" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <small>&copy; <span id="year"></span> Guidetti Andrea — Votre expert en montage PC en Valais & Vaud. Tous droits réservés.</small>
+        </div>
+    </footer>
+    <script src="scripts/app.js" defer></script>
 </body>
 </html>
