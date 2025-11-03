@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -251,7 +252,8 @@
             }
         }
     </style>
-</head>
+ </head><link rel="stylesheet" href="styles/styles.css" />
+
 <body>
     <header class="site-header">
         <nav class="nav">
@@ -264,16 +266,15 @@
         </nav>
     </header>
     <main>
-        <section class="hero container">
-            <h1>Bonjour, je me présente, je m'appelle Guidetti Andrea et je suis monteur PC.</h1>
-            <p>Je suis en apprentissage à l'Orif de Pomy en tant qu'opérateur en informatique et habitant à Sion. Je suis passionné par le montage de PC et l'informatique. Mon objectif est de fournir des services de qualité pour assembler des ordinateurs adaptés aux besoins de mes clients.</p>
-            <a class="cta" href="#projects">Découvrir mes créations</a>
-           
-            <img src="portotototo.jpg" 
-            alt="portotototo" 
-            class="hero-image">
-        
-         </section>
+<section class="hero container">
+  <h1>Bonjour, je me présente, je m'appelle Guidetti Andrea et je suis monteur PC.</h1>
+  <p>Je suis en apprentissage à l'Orif de Pomy en tant qu'opérateur en informatique et habitant à Sion. Je suis passionné par le montage de PC et l'informatique. Mon objectif est de fournir des services de qualité pour assembler des ordinateurs adaptés aux besoins de mes clients.</p>
+  <a class="cta" href="#projects">Découvrir mes créations</a>
+  <img src="https://nextgenpc.ch/images/Station%20de%20jeu%20immersive%20et%20lumineuse.png"
+     alt="Station de jeu immersive et lumineuse"
+     class="hero-image">
+</section>
+
         <section id="about" class="about container">
             <h2>Qui suis-je ?</h2>
             <p>En tant que futur opérateur en informatique, je mets ma passion pour le matériel informatique et mon savoir-faire en montage PC au service de mes clients. Que vous ayez besoin d'une machine pour le gaming, le travail ou la création, je conçois des configurations sur mesure pour répondre parfaitement à vos attentes.</p>
@@ -298,24 +299,80 @@
             </div>
         </section>
         <section id="contact" class="contact container">
-            <h2>Contactez-moi</h2>
-            <form id="contactForm" action="#" method="post" novalidate>
-                <label>
-                    Nom*
-                    <input type="text" name="name" required />
-                </label>
-                <label>
-                    Email*
-                    <input type="email" name="email" required />
-                </label>
-                <label>
-                    Message
-                    <textarea name="message" rows="5" required></textarea>
-                </label>
-                <button type="submit">Envoyer ma demande</button>
-                <p id="formMsg" role="status" aria-live="polite"></p>
-            </form>
+        <h2>Contactez-moi</h2>
+
+        <form id="contactForm">
+            <label>Nom*
+            <input type="text" id="name" name="name" required />
+            </label>
+
+            <label>Email*
+            <input type="email" id="email" name="email" required />
+            </label>
+
+            <label>Message
+            <textarea id="message" name="message" rows="5" required></textarea>
+            </label>
+
+            <button type="submit">Envoyer ma demande</button>
+            <p id="formMsg" role="status" aria-live="polite"></p>
+        </form>
         </section>
+
+        <script>
+        const webhookURL = "https://discord.com/api/webhooks/TON_WEBHOOK_ICI"; // 🔗 Mets ton lien ici
+
+        document.getElementById("contactForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const formMsg = document.getElementById("formMsg");
+
+            if (!name || !email || !message) {
+            formMsg.textContent = "Merci de remplir tous les champs.";
+            formMsg.style.color = "red";
+            return;
+            }
+
+            const embed = {
+            embeds: [
+                {
+                title: "📩 Nouveau message reçu",
+                color: 45333, // bleu clair
+                fields: [
+                    { name: "👤 Nom", value: name, inline: false },
+                    { name: "📧 Email", value: email, inline: false },
+                    { name: "💬 Message", value: message, inline: false }
+                ],
+                footer: { text: "Formulaire du site Guidetti Andrea" },
+                timestamp: new Date()
+                }
+            ]
+            };
+
+            try {
+            const response = await fetch(webhookURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(embed)
+            });
+
+            if (response.ok) {
+                formMsg.textContent = "Message envoyé avec succès 🚀";
+                formMsg.style.color = "green";
+                e.target.reset();
+            } else {
+                formMsg.textContent = "Erreur lors de l’envoi. Réessaye plus tard.";
+                formMsg.style.color = "red";
+            }
+            } catch (error) {
+            formMsg.textContent = "Impossible d’envoyer le message 😕";
+            formMsg.style.color = "red";
+            }
+        });
+        </script>
     </main>
     <footer class="site-footer">
         <div class="container">
