@@ -1,89 +1,206 @@
-/* RESET */
-* { margin:0; padding:0; box-sizing:border-box; }
+/* ========= RESET + VARIABLES ========= */
+:root {
+  --bg: #f7f9fb;
+  --text: #1b1b1b;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #00e5a8;
+  --accent-strong: #00c997;
+}
+
+.dark {
+  --bg: #0e0e0e;
+  --text: #e7e7e7;
+  --card: #1a1a1a;
+  --muted: #a2a2a2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: system-ui, -apple-system, "Inter", Segoe UI, Roboto, Arial, sans-serif;
-  background:#f4f4f4; color:#333; line-height:1.6; overflow-x:hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* HEADER */
-.site-header { background:#1a1a1a; color:#fff; padding:15px 0; box-shadow:0 2px 5px rgba(0,0,0,.2); }
-.nav { max-width:1200px; margin:0 auto; padding:0 30px; display:flex; align-items:center; justify-content:space-between; }
-.logo { color:#00bcd4; font-weight:800; font-size:1.8rem; text-decoration:none; }
-.menu { list-style:none; display:flex; gap:30px; }
-.menu a { color:#fff; text-decoration:none; font-weight:600; }
-.menu a:hover { color:#00bcd4; }
-#themeToggle { background:#00bcd4; color:#fff; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:600; }
-#themeToggle:hover { background:#00a0ad; }
-
-/* CONTAINERS */
-.container { width:90%; max-width:1200px; margin:40px auto; }
-
-/* HERO */
+/* ========= HERO ========= */
 .hero {
-  background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,.1);
-  padding:40px 30px; text-align:center;
-}
-.hero h1 { font-size:2rem; font-weight:800; color:#222; margin-bottom:12px; }
-.hero p { color:#555; max-width:820px; margin:0 auto 22px; }
-
-/* Image de tête – CONTRAINTE SOLIDE */
-.hero-image{
-  display:block;
-  width:100%;
-  max-width:850px;
-  height:auto;
-  max-height:480px;           /* empêche tout débordement */
-  object-fit:cover;
-  object-position:center;
-  border-radius:12px;
-  margin:0 auto;
-  box-shadow:0 6px 18px rgba(0,0,0,.15);
+  position: relative;
+  height: 65vh;
+  background: url("../images/Stationdejeuimmersiveetlumineuse.png") center/cover no-repeat !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2)
+overflow: hidden;
 }
 
-/* PROJECTS */
-.projects {
-  background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,.1);
-  padding:30px 20px;
+/* Flou plus léger + assombrissement */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(1px);
+  z-index: 0;
 }
-.grid { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; }
+.dark .hero::before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Contenu hero */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-family: "Poppins", system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 3vw + 1rem, 3.6rem);
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+.hero-content h1 span {
+  color: var(--accent);
+}
+.hero-content p {
+  font-size: 1.1rem;
+  color: #e9f1f6;
+  margin-top: 0.8rem;
+}
+
+/* ========= DARK MODE BUTTON CENTRÉ ========= */
+.theme-btn {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  transition: background 0.3s, transform 0.2s;
+}
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(-50%) scale(1.05);
+}
+.dark .theme-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffe066;
+}
+
+/* ========= FIX IMAGE ET BOUTON ========= */
+.hero {
+  background-position: center !important;
+  background-size: cover !important;
+}
+.theme-btn {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 20 !important;
+}
+
+/* ========= CARDS & CONTACT (inchangés) ========= */
+.container {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
 .card {
-  width:330px; background:#fff; border:2px solid #00bcd4; border-radius:10px;
-  box-shadow:0 3px 10px rgba(0,0,0,.1); overflow:hidden; transition:transform .25s ease;
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.card:hover{ transform:translateY(-5px); }
-.card h3{ background:#00bcd4; color:#fff; text-align:center; padding:12px; font-weight:700; }
-.card img{
-  display:block; width:100%; height:220px; object-fit:cover; object-position:center; /* pas de débordement */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
-.card:nth-child(1) img{ object-position:50% 32%; } /* recadrage léger du PC bleu */
-.card p{ padding:14px; text-align:center; color:#333; }
-
-/* CONTACT */
-.contact{
-  background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,.1); padding:40px 30px;
+.card h3 {
+  font-family: "Outfit", sans-serif;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
 }
-.contact h2{ text-align:center; color:#00bcd4; font-weight:800; margin-bottom:24px; }
-.contact form{ max-width:620px; margin:0 auto; display:flex; flex-direction:column; gap:18px; }
-.contact label{ font-weight:600; display:flex; flex-direction:column; gap:8px; text-align:left; }
-.contact input, .contact textarea{
-  padding:12px; border:1px solid #ccc; border-radius:6px; font-size:1rem; width:100%;
-}
-.contact button{
-  background:#00bcd4; color:#fff; border:none; padding:14px; border-radius:6px; font-weight:700; cursor:pointer;
-}
-.contact button:hover{ background:#029eb6; }
-#formMsg{ margin-top:6px; color:#0a7f2e; }
-
-/* FOOTER */
-.site-footer{ background:#1a1a1a; color:#fff; text-align:center; padding:24px 0; margin-top:40px; }
-/* 🔒 Fix visuel absolu */
-.hero-image,
 .card img {
-  width: 100% !important;
-  height: 400px !important;
-  object-fit: cover !important;
-  object-position: center !important;
-  display: block !important;
-  border-radius: 12px !important;
-  margin: 0 auto !important;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
 }
+.card p {
+  color: var(--muted);
+}
+.contact h2 {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Outfit", sans-serif;
+  margin-bottom: 1.5rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+input,
+textarea {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  transition: border 0.25s, background 0.25s;
+}
+input:focus,
+textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+button {
+  background: var(--accent);
+  color: #0e0e0e;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.1s;
+}
+button:hover {
+  background: var(--accent-strong);
+}
+button:active {
+  transform: translateY(1px);
+}
+
