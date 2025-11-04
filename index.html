@@ -2,105 +2,94 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Guidetti Andrea - Monteur PC</title>
-  <!-- cache-buster pour forcer le navigateur à charger le bon CSS -->
-  <link rel="stylesheet" href="styles/styles.css?v=3" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guidetti Andrea — Monteur PC</title>
+
+  <!-- Google Fonts -->
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav">
-      <a class="logo" href="#">G/A</a>
-      <ul class="menu">
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button id="themeToggle">dark mode</button>
-    </nav>
-  </header>
+  <!-- HEADER -->
+ <header class="hero">
+  <div class="overlay"></div>
 
-  <main>
-    <section class="hero container" id="about">
-      <h1>Bonjour, je me présente, je m'appelle Guidetti Andrea et je suis monteur PC.</h1>
-      <p>
-        Je suis en apprentissage à l'Orif de Pomy en tant qu'opérateur en informatique et habitant à Sion.
-        Je suis passionné par le montage de PC et l'informatique. Mon objectif est de fournir des services de qualité
-        pour assembler des ordinateurs adaptés aux besoins de mes clients.
-      </p>
-      <img
-        src="images/Stationdejeuimmersiveetlumineuse.png"
-        alt="Station de jeu immersive et lumineuse"
-        class="hero-image"
-      />
-      <!-- Petit message de debug si jamais -->
-      <noscript><p style="color:#c00">Active JavaScript pour un affichage optimal.</p></noscript>
-    </section>
+  <!-- bouton mode centré -->
+  <button id="themeToggle" class="theme-btn" title="Changer de mode">🌙</button>
 
-    <section id="projects" class="projects container">
-      <div class="grid">
-        <article class="card">
-          <h3>PC Gaming Ultime</h3>
-          <img src="images/andrea2.jpg" alt="PC Gaming bleu RGB hautes performances" />
-          <p>Assemblage d'une bête de compétition pour des performances maximales en jeu.</p>
-        </article>
+  <div class="hero-content">
+    <h1>Bonjour, <span>Je m'appelle Guidetti Andrea</span></h1>
+    <p>Je suis monteur PC passionné, J’habite à Sion et je suis en formation d’opérateur en informatique à l’Orif de Pomy. Dans mon temps libre, je suis monteur PC — j’aime expérimenter, apprendre et perfectionner mes compétences dans l’assemblage et l’optimisation d’ordinateurs.</p>
+  </div>
+</header>
+  <!-- SECTION PROJETS (inchangée) -->
+  <section id="projects" class="projects container">
+    <div class="grid">
+      <article class="card">
+        <h3>PC Gaming Ultime</h3>
+        <img src="images/andrea2.jpg" alt="PC Gaming bleu RGB hautes performances" />
+        <p>Assemblage d'une bête de compétition pour des performances maximales en jeu.</p>
+      </article>
 
-        <article class="card">
-          <h3>Station de Travail Créative</h3>
-          <img src="images/andrea1.jpg" alt="Bureau minimaliste gris avec écran courbé" />
-          <p>Configuration optimisée pour le montage vidéo et la modélisation 3D.</p>
-        </article>
+      <article class="card">
+        <h3>Station de Travail Créative</h3>
+        <img src="images/andrea1.jpg" alt="Bureau minimaliste gris avec écran courbé" />
+        <p>Configuration optimisée pour le montage vidéo et la modélisation 3D.</p>
+      </article>
 
-        <article class="card">
-          <h3>PC Silencieux et Performant</h3>
-          <img src="images/andrea3.jpg" alt="Intérieur PC silencieux avec carte ASUS" />
-          <p>Un équilibre parfait entre puissance et discrétion pour votre bureau.</p>
-        </article>
-      </div>
-    </section>
+      <article class="card">
+        <h3>PC Silencieux et Performant</h3>
+        <img src="images/andrea3.jpg" alt="Intérieur PC silencieux avec carte ASUS" />
+        <p>Un équilibre parfait entre puissance et discrétion pour votre bureau.</p>
+      </article>
+    </div>
+  </section>
 
-    <section id="contact" class="contact container">
-      <h2>Contactez-moi</h2>
-      <form id="contactForm" action="https://hook.eu2.make.com/wgtdkcdv7iasdg0gfgjbhgx1507ykxis" method="POST">
-        <label>Nom*
-          <input type="text" name="name" required />
-        </label>
+  <!-- CONTACT -->
+  <section id="contact" class="contact container">
+    <h2>Contactez-moi</h2>
+    <form id="contactForm" action="https://ton-url-pipedream.m.pipedream.net" method="POST">
+      <label>Nom*
+        <input type="text" name="name" required />
+      </label>
 
-        <label>Email*
-          <input type="email" name="email" required />
-        </label>
+      <label>Email*
+        <input type="email" name="email" required />
+      </label>
 
-        <label>Message
-          <textarea name="message" rows="5" required></textarea>
-        </label>
+      <label>Message
+        <textarea name="message" rows="5" required></textarea>
+      </label>
 
-        <!-- honeypot anti-bot -->
-        <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" />
+      <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" />
+      <button type="submit">Envoyer ma demande</button>
+      <p id="formMsg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
 
-        <button type="submit">Envoyer ma demande</button>
-        <p id="formMsg" role="status" aria-live="polite"></p>
-      </form>
-    </section>
-  </main>
+<script>
+  const toggle = document.getElementById("themeToggle");
+  const body = document.body;
+  const savedTheme = localStorage.getItem("theme");
 
-  <footer class="site-footer">
-    <small>&copy; <span id="year"></span> Guidetti Andrea — Votre monteur PC en Valais & Vaud. Tous droits réservés.</small>
-  </footer>
+  if (savedTheme === "dark") {
+    body.classList.add("dark");
+    toggle.textContent = "☀️";
+  } else {
+    toggle.textContent = "🌙";
+  }
 
-  <script>
-    // année footer
-    document.getElementById("year").textContent = new Date().getFullYear();
+  toggle.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    const theme = body.classList.contains("dark") ? "dark" : "light";
+    localStorage.setItem("theme", theme);
+    toggle.textContent = theme === "dark" ? "☀️" : "🌙";
+  });
+</script>
 
-    // message simple après envoi (côté client)
-    const form = document.getElementById("contactForm");
-    const formMsg = document.getElementById("formMsg");
-    form.addEventListener("submit", async (e) => {
-      // laisse Make recevoir la requête POST classique
-      // si tu veux faire du fetch/AJAX, on peut, mais pas nécessaire ici
-      setTimeout(() => {
-        formMsg.textContent = "Si tout est OK, je te réponds très vite ✅";
-      }, 300);
-    });
-  </script>
+
 </body>
 </html>
+
+
 
