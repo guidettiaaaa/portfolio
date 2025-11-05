@@ -6,23 +6,31 @@
   <title>Guidetti Andrea — Monteur PC</title>
 
   <!-- Google Fonts -->
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/styles.css" />
 </head>
 <body>
-  <!-- HEADER -->
- <header class="hero">
-  <div class="overlay"></div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="overlay"></div>
 
-  <!-- bouton mode centré -->
-  <button id="themeToggle" class="theme-btn" title="Changer de mode">🌙</button>
+    <div class="hero-content">
+      <h1>
+        Bonjour,<br />
+        <span>Je m'appelle Guidetti Andrea</span>
+      </h1>
+      <p class="intro">
+        Je suis monteur PC passionné. J’habite à Sion et je suis actuellement en formation d’opérateur en
+        informatique à l’Orif de Pomy. Dans mon temps libre, j’aime expérimenter, apprendre et perfectionner
+        mes compétences dans l’assemblage et l’optimisation d’ordinateurs, pour le montage pc je ne vends pas de pièces, et pour toutes demandes de montage ou même je peux commander les pièce avec votre budget et monté. Mais en outre pour toute demande veuiiliez me contactez en bas de la page 
+      </p>
+    </div>
 
-  <div class="hero-content">
-    <h1>Bonjour, <span>Je m'appelle Guidetti Andrea</span></h1>
-    <p>Je suis monteur PC passionné, J’habite à Sion et je suis en formation d’opérateur en informatique à l’Orif de Pomy. Dans mon temps libre, je suis monteur PC — j’aime expérimenter, apprendre et perfectionner mes compétences dans l’assemblage et l’optimisation d’ordinateurs.</p>
-  </div>
-</header>
-  <!-- SECTION PROJETS (inchangée) -->
+    <button id="themeToggle" class="theme-btn" title="Changer de mode">🌙</button>
+  </header>
+
+  <!-- PROJETS -->
   <section id="projects" class="projects container">
     <div class="grid">
       <article class="card">
@@ -48,7 +56,7 @@
   <!-- CONTACT -->
   <section id="contact" class="contact container">
     <h2>Contactez-moi</h2>
-    <form id="contactForm" action="https://ton-url-pipedream.m.pipedream.net" method="POST">
+    <form id="contactForm" action="#" method="POST">
       <label>Nom*
         <input type="text" name="name" required />
       </label>
@@ -62,34 +70,32 @@
       </label>
 
       <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" />
+
       <button type="submit">Envoyer ma demande</button>
       <p id="formMsg" role="status" aria-live="polite"></p>
     </form>
   </section>
 
-<script>
-  const toggle = document.getElementById("themeToggle");
-  const body = document.body;
-  const savedTheme = localStorage.getItem("theme");
+  <script>
+    const toggle = document.getElementById("themeToggle");
+    const body = document.body;
+    const savedTheme = localStorage.getItem("theme");
 
-  if (savedTheme === "dark") {
-    body.classList.add("dark");
-    toggle.textContent = "☀️";
-  } else {
-    toggle.textContent = "🌙";
-  }
+    if (savedTheme === "dark") {
+      body.classList.add("dark");
+      toggle.textContent = "☀️";
+    } else {
+      toggle.textContent = "🌙";
+    }
 
-  toggle.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    const theme = body.classList.contains("dark") ? "dark" : "light";
-    localStorage.setItem("theme", theme);
-    toggle.textContent = theme === "dark" ? "☀️" : "🌙";
-  });
-</script>
-
-
+    toggle.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      const theme = body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", theme);
+      toggle.textContent = theme === "dark" ? "☀️" : "🌙";
+    });
+  </script>
 </body>
 </html>
-
 
 
