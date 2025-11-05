@@ -8,43 +8,250 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles/styles.css" />
+  <style>
+    /* ========= RESET + VARIABLES ========= */
+    :root {
+      --bg: #f7f9fb;
+      --text: #1b1b1b;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #00e5a8;
+      --accent-strong: #00c997;
+    }
+
+    .dark {
+      --bg: #0e0e0e;
+      --text: #e7e7e7;
+      --card: #1a1a1a;
+      --muted: #a2a2a2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      transition: background .3s, color .3s;
+      line-height: 1.6;
+    }
+
+    /* ========= HERO ========= */
+    .hero {
+      position: relative;
+      height: 65vh;
+      background: url("images/Stationdejeuimmersiveetlumineuse.png") center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.25);
+      backdrop-filter: blur(1px);
+      z-index: 0;
+    }
+    .dark .hero::before { background: rgba(0,0,0,.5); }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 2rem;
+    }
+
+    .hero-content h1 {
+      font-family: "Poppins", sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 3vw + 1rem, 3.6rem);
+      color: #fff;
+      line-height: 1.1;
+      text-shadow: 0 8px 30px rgba(0,0,0,.4);
+    }
+    .hero-content h1 span { color: var(--accent); }
+
+    .hero-content .intro {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #f2f7fa;
+      margin-top: 1.2rem;
+      text-shadow: 0 3px 12px rgba(0,0,0,.4);
+    }
+
+    /* ========= BOUTON DARK/LIGHT CENTRÉ ========= */
+    .theme-btn {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,.25);
+      color: #fff;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+      transition: background .3s, transform .2s;
+    }
+    .theme-btn:hover {
+      background: rgba(255,255,255,.35);
+      transform: translateX(-50%) scale(1.08);
+    }
+    .dark .theme-btn { background: rgba(255,255,255,.15); color: #ffe066; }
+
+    /* ========= PROJETS ========= */
+    .projects {
+      padding: 3rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .projects .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .card h3 {
+      font-family: "Poppins", sans-serif;
+      margin: 1rem;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .card p {
+      margin: 0 1rem 1.5rem;
+      color: var(--muted);
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    /* ========= CONTACT ========= */
+    #contact {
+      padding-inline: 1rem;
+      margin-top: 2rem;
+    }
+    #contact h2 {
+      text-align: center;
+      color: var(--accent);
+      font-family: "Poppins", sans-serif;
+      font-weight: 900;
+      margin: 0 auto 1.5rem auto;
+      width: 100%;
+    }
+    #contact form {
+      width: min(640px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #contact form label {
+      display: block;
+      width: 100%;
+      font-weight: 600;
+      text-align: left;
+    }
+    #contact input,
+    #contact textarea {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: .9rem;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border .25s, background .25s;
+    }
+    #contact input:focus,
+    #contact textarea:focus { border-color: var(--accent); outline: none; }
+    #contact button {
+      background: var(--accent);
+      color: #0e0e0e;
+      border: none;
+      border-radius: 10px;
+      padding: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background .25s, transform .1s;
+    }
+    #contact button:hover { background: var(--accent-strong); }
+    #contact button:active { transform: translateY(1px); }
+
+    /* ========= RESPONSIVE ========= */
+    @media (max-width: 768px) {
+      .hero { height: 55vh; }
+      .hero-content h1 { font-size: 2.2rem; }
+      .hero-content .intro { font-size: 1.1rem; }
+      .card img { height: 140px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- HERO -->
   <header class="hero">
     <div class="overlay"></div>
-
     <div class="hero-content">
-      <h1>
-        Bonjour,<br />
-        <span>Je m'appelle Guidetti Andrea</span>
-      </h1>
+      <h1>Bonjour,<br><span>Je m'appelle Guidetti Andrea</span></h1>
       <p class="intro">
-        Je suis monteur PC passionné. J’habite à Sion et je suis actuellement en formation d’opérateur en
-        informatique à l’Orif de Pomy. Dans mon temps libre, j’aime expérimenter, apprendre et perfectionner
-        mes compétences dans l’assemblage et l’optimisation d’ordinateurs, pour le montage pc je ne vends pas de pièces, et pour toutes demandes de montage ou même je peux commander les pièce avec votre budget et monté. Mais en outre pour toute demande veuiiliez me contactez en bas de la page 
+        Monteur PC passionné à Sion 🇨🇭 — Je conçois et assemble des configurations sur mesure, 
+        performantes et optimisées selon vos besoins.  
+        Pour toute demande, contactez-moi en bas de la page !
       </p>
     </div>
-
     <button id="themeToggle" class="theme-btn" title="Changer de mode">🌙</button>
   </header>
 
-  <!-- PROJETS -->
-  <section id="projects" class="projects container">
+  <section id="projects" class="projects">
     <div class="grid">
       <article class="card">
         <h3>PC Gaming Ultime</h3>
         <img src="images/andrea2.jpg" alt="PC Gaming bleu RGB hautes performances" />
         <p>Assemblage d'une bête de compétition pour des performances maximales en jeu.</p>
       </article>
-
       <article class="card">
         <h3>Station de Travail Créative</h3>
         <img src="images/andrea1.jpg" alt="Bureau minimaliste gris avec écran courbé" />
         <p>Configuration optimisée pour le montage vidéo et la modélisation 3D.</p>
       </article>
-
       <article class="card">
         <h3>PC Silencieux et Performant</h3>
         <img src="images/andrea3.jpg" alt="Intérieur PC silencieux avec carte ASUS" />
@@ -53,49 +260,73 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="contact container">
     <h2>Contactez-moi</h2>
-    <form id="contactForm" action="#" method="POST">
+    <form id="contactForm" action="https://ancient-surf-51ef.alpha1999-carter.workers.dev" method="POST">
       <label>Nom*
         <input type="text" name="name" required />
       </label>
-
       <label>Email*
         <input type="email" name="email" required />
       </label>
-
       <label>Message
         <textarea name="message" rows="5" required></textarea>
       </label>
-
       <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" />
-
       <button type="submit">Envoyer ma demande</button>
       <p id="formMsg" role="status" aria-live="polite"></p>
     </form>
   </section>
 
   <script>
+    // 🌙 Thème
     const toggle = document.getElementById("themeToggle");
     const body = document.body;
     const savedTheme = localStorage.getItem("theme");
-
     if (savedTheme === "dark") {
       body.classList.add("dark");
       toggle.textContent = "☀️";
     } else {
       toggle.textContent = "🌙";
     }
-
     toggle.addEventListener("click", () => {
       body.classList.toggle("dark");
       const theme = body.classList.contains("dark") ? "dark" : "light";
       localStorage.setItem("theme", theme);
       toggle.textContent = theme === "dark" ? "☀️" : "🌙";
     });
+
+    // 📬 Formulaire
+    const form = document.getElementById('contactForm');
+    const msg = document.getElementById('formMsg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = "Envoi en cours...";
+      msg.style.color = "gray";
+      const data = Object.fromEntries(new FormData(form));
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json().catch(() => null);
+        if (res.ok && json?.ok) {
+          msg.textContent = "✅ Message envoyé avec succès !";
+          msg.style.color = "green";
+          form.reset();
+        } else {
+          msg.textContent = "❌ Erreur lors de l'envoi.";
+          msg.style.color = "red";
+        }
+      } catch {
+        msg.textContent = "⚠️ Erreur réseau, réessayez.";
+        msg.style.color = "orange";
+      }
+    });
   </script>
 </body>
 </html>
+
 
 
