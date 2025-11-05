@@ -15,17 +15,13 @@
   --muted: #a2a2a2;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: "Inter", system-ui, sans-serif;
-  transition: background 0.3s, color 0.3s;
+  transition: background .3s, color .3s;
 }
 
 /* ========= HERO ========= */
@@ -41,24 +37,19 @@ body {
   overflow: hidden;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2)
-overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
 }
 
-/* Flou plus léger + assombrissement */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0,0,0,.15);
   backdrop-filter: blur(1px);
   z-index: 0;
 }
-.dark .hero::before {
-  background: rgba(0, 0, 0, 0.5);
-}
+.dark .hero::before { background: rgba(0,0,0,.5); }
 
-/* Contenu hero */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -72,135 +63,102 @@ overflow: hidden;
   font-size: clamp(2.4rem, 3vw + 1rem, 3.6rem);
   line-height: 1.1;
   color: #fff;
-  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 8px 30px rgba(0,0,0,.4);
 }
-.hero-content h1 span {
-  color: var(--accent);
-}
-.hero-content p {
-  font-size: 1.1rem;
-  color: #e9f1f6;
-  margin-top: 0.8rem;
+.hero-content h1 span { color: var(--accent); }
+
+/* === Texte du hero (intro) === */
+.hero-content .intro {
+  font-size: 1.25rem;        /* un peu plus grand */
+  font-weight: 600;          /* en gras */
+  color: #f2f7fa;            /* léger contraste */
+  margin-top: 1.2rem;
+  line-height: 1.6;
+  text-shadow: 0 3px 12px rgba(0,0,0,.4);
 }
 
-/* ========= DARK MODE BUTTON CENTRÉ ========= */
+/* ========= BOUTON DARK/LIGHT CENTRÉ ========= */
 .theme-btn {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  height: 48px;
+  position: absolute !important;
+  top: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 48px; height: 48px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255,255,255,.25);
   color: #fff;
   font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   cursor: pointer;
   z-index: 10;
   backdrop-filter: blur(4px);
-  transition: background 0.3s, transform 0.2s;
+  transition: background .3s, transform .2s;
 }
 .theme-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255,255,255,.35);
   transform: translateX(-50%) scale(1.05);
 }
-.dark .theme-btn {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffe066;
-}
+.dark .theme-btn { background: rgba(255,255,255,.15); color: #ffe066; }
 
-/* ========= FIX IMAGE ET BOUTON ========= */
-.hero {
-  background-position: center !important;
-  background-size: cover !important;
+/* ========= CONTACT FORM CENTRÉ ========= */
+#contact {
+  padding-inline: 1rem;
 }
-.theme-btn {
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 20 !important;
-}
-
-/* ========= CARDS & CONTACT (inchangés) ========= */
-.container {
-  max-width: 1100px;
-  margin: 3rem auto;
-  padding: 0 1rem;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 1.5rem;
-}
-.card {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-}
-.card h3 {
-  font-family: "Outfit", sans-serif;
-  color: var(--accent);
-  margin-bottom: 0.8rem;
-}
-.card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 0.8rem;
-}
-.card p {
-  color: var(--muted);
-}
-.contact h2 {
+#contact h2 {
   text-align: center;
   color: var(--accent);
-  font-family: "Outfit", sans-serif;
-  margin-bottom: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  margin: 0 auto 1.5rem auto;
+  width: 100%;
 }
-form {
+#contact form {
+  width: min(640px, 100%);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
 }
-input,
-textarea {
+#contact form label {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  text-align: left;
+}
+#contact input,
+#contact textarea {
   background: var(--card);
   color: var(--text);
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 0.9rem;
+  padding: .9rem;
   font-size: 1rem;
-  transition: border 0.25s, background 0.25s;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border .25s, background .25s;
 }
-input:focus,
-textarea:focus {
-  border-color: var(--accent);
-  outline: none;
-}
-button {
+#contact input:focus,
+#contact textarea:focus { border-color: var(--accent); outline: none; }
+#contact button {
   background: var(--accent);
   color: #0e0e0e;
   border: none;
   border-radius: 10px;
-  padding: 0.9rem;
+  padding: .9rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.25s, transform 0.1s;
+  width: 100%;
+  transition: background .25s, transform .1s;
 }
-button:hover {
-  background: var(--accent-strong);
+#contact button:hover { background: var(--accent-strong); }
+#contact button:active { transform: translateY(1px); }
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 768px) {
+  .hero { height: 55vh; }
+  .hero-content h1 { font-size: 2.2rem; }
+  .hero-content .intro { font-size: 1.1rem; }
 }
-button:active {
-  transform: translateY(1px);
-}
+
 
